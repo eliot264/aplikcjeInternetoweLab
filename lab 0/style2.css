@@ -1,0 +1,286 @@
+body{
+    margin: auto;
+    width: 1000px;
+    background-size: 1000px 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("https://images.pexels.com/photos/5961945/pexels-photo-5961945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+
+    backdrop-filter: blur(5px);
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(#243E36, #7CA982);
+}
+.headerPageNameDiv{
+    font-size: 30px;
+    font-family: 'Forte';
+    font-weight: light;
+    display: flex;
+    align-items: center;
+    color: #7CA982;
+}
+.headerButtonsDiv{
+    width: 750px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.headerButton{
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    margin: 0px;
+    padding: 0px 20px;
+    font-family: 'Verdana';
+    font-size: 18px;
+    color: #243E36;
+}
+.headerButton:hover{
+    font-weight: bold;
+}
+.firstSectionDiv{
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    height: 500px;
+    width: 500px;
+    font-family: 'Brush Script MT';
+    flex-direction: column;
+    color: black;
+    align-items: center;
+    justify-items: center;
+    opacity: 0.9;
+
+    background-size: cover;
+    rotate: -10deg;
+    background-image: url("https://pngimg.com/uploads/sticky_note/sticky_note_PNG18905.png");
+}
+.firstSectionH{
+    font-size: 30px;
+    padding-top: 50px;
+    rotate: -4deg;
+}
+.firstSectionP{
+    font-size: 25px;
+    text-align: center;
+    padding: 15px;
+    rotate: -4deg;
+}
+.secondSectionDiv{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.secondSectionContntDiv{
+    display: flex;
+    flex-direction: column;
+}
+.secondSectionContentDivFieldDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+    list-style-position: inside;
+    margin: 10px 20px;
+    font-family: 'Calibri';
+    color: #cbd4c2;
+    background-image: radial-gradient(#243E36, #7CA982);
+    background-position: center;
+    border-radius: 10px;
+    opacity: 0.75;
+}
+ul{
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 10px;
+}
+.secondSectionH3{
+    
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+}
+.secondSectionHeaderDiv{
+    color: #7CA982;
+    font-family: 'Arial Rounded MT';
+    display: flex;
+    margin: 10px 30px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.secondSectionHeaderH2{
+    font-weight: bold;
+    text-shadow: 1px 1px #243E36;
+    font-size: 30px;
+    letter-spacing: 10px;
+    background-color: #E0EEC6;
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-shadow: 5px 5px #7CA982;
+}
+.secondSectionHeaderP{
+    margin: 5px 10px;
+    background-color: #E0EEC6;
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-shadow: 5px 5px #7CA982;
+}
+.thirdSectionDiv{
+    text-align: center;
+    color: #243E36;
+    font-family: 'Calibri';
+    text-shadow: 1px 1px #7CA982;;
+    margin: 20px;
+}
+.fourthSectionDiv{
+    display: flex;
+    flex-direction: row;
+    text-align: justify;
+    align-items: center;
+    background-image: linear-gradient(#243E36, #7CA982);
+    margin: 20px;
+    margin-bottom: 50px;
+    padding: 20px;
+    font-family: 'Berlin Sans FB';
+    color: #cbd4c2;
+}
+.fourthSectionH{
+    margin:5px;
+    font-weight: bold;
+}
+footer{
+    background-color: #243E36;
+    font-family: 'Corbel';
+    color: #cbd4c2;
+    font-style: italic;
+}
+.footerDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.footerH{
+    font-size: 25px;
+    letter-spacing: 20px;
+}
+.footerP{
+    font-style: normal;
+    margin: 0px;
+    font-size: 17px;
+}
+a{
+    margin: 0px;
+    text-decoration: none;
+    color: #cbd4c2;
+}
+
+@media (max-width: 376px){
+    body{
+        width: 100%;
+        background-size: cover;
+    }
+    header{
+        display: flex;
+        color: red;
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+        height: max-content;
+    }
+    .headerPageNameDiv{
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px;
+        width:max-content;
+    }
+    .headerButtonsDiv{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px;
+        margin-top: 10px;
+        padding: 0px;
+    }
+    .headerButton{
+        border: none;
+        background-color: transparent;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-family: 'Calibri';
+        font-size: 25px;
+        color: #cbd4c2;
+    }
+    .firstSectionDiv{
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+        width: 80%;
+        height: 80%;
+        font-family: 'Brush Script MT';
+        flex-direction: column;
+        color: black;
+        align-items: center;
+        justify-items: center;
+        opacity: 0.9;
+    
+        background-size: cover;
+        rotate: -10deg;
+        background-image: url("https://pngimg.com/uploads/sticky_note/sticky_note_PNG18905.png");
+    }
+    .firstSectionH{
+        font-size: 20px;
+        text-align: center;
+    }
+    .firstSectionP{
+        font-size: 15px;
+        text-align: center;
+    }
+    .secondSectionDiv{
+        display: flex;
+        flex-direction: column;
+    }
+    .secondSectionContntDiv{
+        display: flex;
+        flex-direction: column;
+    }
+    .secondSectionHeaderP{
+        margin: 1px 20px;
+        margin-bottom: 40px;
+    }
+    .footerDiv{
+        display: flex;
+        flex-direction: column;
+        margin: 10px 30px 0px 30px;
+        padding-bottom: 30px;
+    }
+    .fourthSectionDiv{
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        align-items: center;
+        background-image: linear-gradient(#243E36, #7CA982);
+        margin: 20px;
+        margin-bottom: 50px;
+        padding: 20px;
+        font-family: 'Berlin Sans FB';
+        color: #cbd4c2;
+    }
+    .fourthSectionH{
+        margin:5px;
+        font-weight: bold;
+    }
+}
