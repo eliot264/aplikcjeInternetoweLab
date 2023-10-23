@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+    <head>
+        <title>Todo list</title>
+        <script src="script.js"></script>
+    </head>
+
+    <body style="width: 100%; min-height: 100%; margin: 0px;" onload="TaskList.loadFromLocaLStorage()" onclick="bodyOnClick()">
+        <div id="mainDiv" style=" width: 500px; margin:auto;">
+            <div id="searchBarDiv" style="display: flex; flex-direction: row; width: 100%; align-items: center; justify-content: space-between;">
+                <p style="margin-right: 10px;">Szukaj:</p>
+                <input id="searchTextBox" type="text" style="width: 100%; margin-right: 10px;" onchange="TaskList.searchTasks()" onkeypress="this.onchange()" oninput="this.onchange()"/>
+                <!-- <button id="searchButton" onclick="TaskList.searchTasks()">🔍</button> -->
+            </div>
+
+            <div id="taskListDiv" style="width: 100%; display:flex; flex-direction: column; align-items: center; justify-content: center;"></div>
+
+            <div id="addTaskDiv" style="display: flex; flex-direction: row; width: 100%; align-items: center; justify-content: center;">
+                <p style="margin-right: 10px;">Nazwa zadania:</p>
+                <input style="margin-right: 10px; width: 100%;" id="addItemTextBox" type="text"/>
+                <p style="margin-right: 10px;">Data:</p>
+                <input style="margin-right: 10px; width: 100%;" id="addItemDate" type="date"/>
+                <button onclick="TaskList.createTask()">➕</button>
+            </div>
+        </div>
+    </body>
+</html>
