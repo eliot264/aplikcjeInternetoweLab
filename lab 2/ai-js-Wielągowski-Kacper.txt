@@ -1,0 +1,7 @@
+<script>
+	let image = document.getElementsByTagName("obrazek")[0];
+	let canvas = document.getElementsByTagName("płótno")[0];
+	
+	let context = canvas.getContext("2d");
+	context.drawImage(image, 0, 0, 200, 200);
+</script>

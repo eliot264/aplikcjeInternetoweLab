@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mapa puzzle</title>
+        <link rel="stylesheet" href="leaflet-1.7.1/leaflet.css" />
+        <script src="leaflet-1.7.1/leaflet-src.js"></script>
+        <script src="leaflet-1.7.1/leaflet-providers.js"></script>
+        <script src="leaflet-1.7.1/leaflet-image.js"></script>
+        <script src="https://randojs.com/2.0.0.js"></script>
+        <style>
+            #map{
+                width: 400px;
+                height: 400px;
+                flex-shrink: 0;
+                border: 1px solid black;
+            }
+            #puzzleField{
+                width: 400px;
+                flex-shrink: 0;
+                display: grid;
+                grid-template-columns: 100px 100px 100px 100px;
+                grid-template-rows: 100px 100px 100px 100px;
+                height: 400px;
+                border: 1px solid black;
+            }
+            #puzzleHolder{
+                width: 900px;
+                height: 200px;
+                border: 1px solid black;
+                margin: 10px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .puzzleFieldPlace{
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div style="display: flex; flex-direction: row;">
+            <div id="map"></div>
+            <div id="puzzleField">
+            </div>
+        </div>
+
+        <div id="puzzleHolder"></div>
+        
+        <button id="locationButton">Set my Location</button>
+        <button id="startPuzzleButton">Start puzzle</button>
+
+        <script>
+            const map = L.map('map');
+            L.tileLayer.provider('Esri.WorldImagery').addTo(map);
+
+            const setLocalization = function(){
+                if(!navigator.geolocation){
+                    alert("Zezwól na geolokalizację");
+                }
+
+                navigator.geolocation.getCurrentPosition(position => {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+
+                    map.setView([latitude, longitude], 18);
+                }, positionError => {
+                    alert(positionError);
+                });
+            };
+
+            const startPuzzle = function(){
+                leafletImage(map, function(err, canvas){
+                    let children = new Array();
+                    for(let i = 0; i < 16; i++){
+                        let div = document.createElement("div");
+                        let divCanvas = document.createElement("canvas");
+                        let context = divCanvas.getContext("2d");
+
+                        div.draggable = true;
+                        div.style = "width: 100px; height: 100px; border: 1px solid black;"
+
+                        let w = Math.floor(i / 4);
+                        let k = i % 4;
+
+                        context.drawImage(canvas, w * 100, k * 100, 100, 100, 0, 0, 100, 100);
+
+                        div.appendChild(divCanvas);
+
+                        div.id = "tile" + w + "_" + k;
+                        div.addEventListener("dragstart", (event) =>{
+                            event.dataTransfer.setData("text", "tile" + w + "_" + k);
+                        });
+
+                        children.push(div);
+                    }
+                    let holder = document.getElementById("puzzleHolder");
+                    let shuffledIndexes = randoSequence(15);
+                    for(var i = 0; i < 16; i++){
+                        holder.appendChild(children[shuffledIndexes[i]]);
+                    }
+                });
+            };
+
+            const checkPuzzles = function(){
+                let correct = 0;
+                let children = document.getElementById("puzzleField").children;
+
+                for(let i = 0; i < 16; i++){
+                    if(children[i].children.length == 1){
+                        let id1 = children[i].id;
+                        id1 = id1.replace("place", "");
+
+                        let id2 = children[i].children[0].id;
+                        id2 = id2.replace("tile", "");
+
+                        console.log(id1 + " == " + id2 + ", boolean: " + (id1 == id2));
+
+                        if(id1 == id2){
+                            correct += 1;
+                        }
+                    }
+                }
+
+                if(correct == 16){
+                    let n = new Notification("Ułożono prawidłowo wszystkie puzzle!");
+                }
+            }
+
+            const initPuzzleField = function(){
+                let field = document.getElementById("puzzleField");
+                for(let i = 0; i < 16; i++){
+                    let w = Math.floor(i / 4);
+                    let k = i % 4;
+
+                    let div = document.createElement("div");
+                    div.className = "puzzleFieldPlace";
+                    div.id = "place" + k + "_" + w;
+
+                    div.addEventListener("dragover", (event) =>{
+                        event.preventDefault();
+                    });
+                    div.addEventListener("drop", (event) => {
+                        let tile = document.getElementById(event.dataTransfer.getData("text"));
+                        document.getElementById("place" + k + "_" + w).appendChild(tile);
+
+                        checkPuzzles();    
+                    });
+                    field.appendChild(div);
+                }
+
+                let puzzleHolder = document.getElementById("puzzleHolder")
+
+                puzzleHolder.addEventListener("dragover", (event) =>{
+                    event.preventDefault();
+                });
+
+                puzzleHolder.addEventListener("drop", (event) => {
+                    let tile = document.getElementById(event.dataTransfer.getData("text"));
+                    puzzleHolder.appendChild(tile);
+                });
+            }
+            document.body.onload = () => {
+                setLocalization();
+                initPuzzleField();
+
+                Notification.requestPermission((permission) => {
+                });
+            }
+            // docu
+            document.getElementById("locationButton").onclick = setLocalization;
+            document.getElementById("startPuzzleButton").onclick = startPuzzle;
+
+
+        </script>
+    </body>
+</html>
